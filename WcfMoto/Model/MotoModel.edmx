@@ -1,0 +1,813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MotoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Announcements">
+          <Key>
+            <PropertyRef Name="IdAnnouncement" />
+          </Key>
+          <Property Name="IdAnnouncement" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdBrand" Type="int" Nullable="false" />
+          <Property Name="IdModel" Type="int" Nullable="false" />
+          <Property Name="IdBodyType" Type="int" Nullable="false" />
+          <Property Name="IdColor" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Negotiable" Type="bit" Nullable="false" />
+          <Property Name="ProDate" Type="int" />
+          <Property Name="Mileage" Type="int" />
+          <Property Name="StrokeCapacity" Type="int" />
+          <Property Name="Power" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillDiscount">
+          <Key>
+            <PropertyRef Name="IdBillDiscount" />
+          </Key>
+          <Property Name="IdBillDiscount" Type="int" Nullable="false" />
+          <Property Name="IdBill" Type="int" Nullable="false" />
+          <Property Name="IdDiscount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="IdBill" />
+          </Key>
+          <Property Name="IdBill" Type="int" Nullable="false" />
+          <Property Name="IdService" Type="int" Nullable="false" />
+          <Property Name="IdAnnouncement" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="FinalValue" Type="smallmoney" Nullable="false" />
+          <Property Name="DateTo" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BodyTypes">
+          <Key>
+            <PropertyRef Name="IdBodyType" />
+          </Key>
+          <Property Name="IdBodyType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brands">
+          <Key>
+            <PropertyRef Name="IdBrand" />
+          </Key>
+          <Property Name="IdBrand" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="IdColor" />
+          </Key>
+          <Property Name="IdColor" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="IdDiscount" />
+          </Key>
+          <Property Name="IdDiscount" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DiscountValue" Type="int" Nullable="false" />
+          <Property Name="UsesLeft" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="IdMessage" />
+          </Key>
+          <Property Name="IdMessage" Type="int" Nullable="false" />
+          <Property Name="IdAnnouncement" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Models">
+          <Key>
+            <PropertyRef Name="IdModel" />
+          </Key>
+          <Property Name="IdModel" Type="int" Nullable="false" />
+          <Property Name="IdBrand" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="IdService" />
+          </Key>
+          <Property Name="IdService" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Announcements_BodyTypes">
+          <End Role="BodyTypes" Type="Self.BodyTypes" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BodyTypes">
+              <PropertyRef Name="IdBodyType" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="IdBodyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcements_Colors">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="IdColor" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="IdColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcements_Models">
+          <End Role="Models" Type="Self.Models" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="IdModel" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="IdModel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcements_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDiscount_Bills">
+          <End Role="Bills" Type="Self.Bills" Multiplicity="1" />
+          <End Role="BillDiscount" Type="Self.BillDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bills">
+              <PropertyRef Name="IdBill" />
+            </Principal>
+            <Dependent Role="BillDiscount">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDiscount_Discounts">
+          <End Role="Discounts" Type="Self.Discounts" Multiplicity="1" />
+          <End Role="BillDiscount" Type="Self.BillDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discounts">
+              <PropertyRef Name="IdDiscount" />
+            </Principal>
+            <Dependent Role="BillDiscount">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Announcements">
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Announcements">
+              <PropertyRef Name="IdAnnouncement" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="IdAnnouncement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="IdService" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Announcements">
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Announcements">
+              <PropertyRef Name="IdAnnouncement" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="IdAnnouncement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Models_Brands">
+          <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+          <End Role="Models" Type="Self.Models" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="IdBrand" />
+            </Principal>
+            <Dependent Role="Models">
+              <PropertyRef Name="IdBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MotoModelStoreContainer">
+          <EntitySet Name="Announcements" EntityType="Self.Announcements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillDiscount" EntityType="Self.BillDiscount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BodyTypes" EntityType="Self.BodyTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Models" EntityType="Self.Models" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Announcements_BodyTypes" Association="Self.FK_Announcements_BodyTypes">
+            <End Role="BodyTypes" EntitySet="BodyTypes" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcements_Colors" Association="Self.FK_Announcements_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcements_Models" Association="Self.FK_Announcements_Models">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcements_Users" Association="Self.FK_Announcements_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDiscount_Bills" Association="Self.FK_BillDiscount_Bills">
+            <End Role="Bills" EntitySet="Bills" />
+            <End Role="BillDiscount" EntitySet="BillDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDiscount_Discounts" Association="Self.FK_BillDiscount_Discounts">
+            <End Role="Discounts" EntitySet="Discounts" />
+            <End Role="BillDiscount" EntitySet="BillDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Announcements" Association="Self.FK_Bills_Announcements">
+            <End Role="Announcements" EntitySet="Announcements" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Services" Association="Self.FK_Bills_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Announcements" Association="Self.FK_Messages_Announcements">
+            <End Role="Announcements" EntitySet="Announcements" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users" Association="Self.FK_Messages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Models_Brands" Association="Self.FK_Models_Brands">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Models" EntitySet="Models" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MotoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Announcements">
+          <Key>
+            <PropertyRef Name="IdAnnouncement" />
+          </Key>
+          <Property Name="IdAnnouncement" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdBrand" Type="Int32" Nullable="false" />
+          <Property Name="IdModel" Type="Int32" Nullable="false" />
+          <Property Name="IdBodyType" Type="Int32" Nullable="false" />
+          <Property Name="IdColor" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Negotiable" Type="Boolean" Nullable="false" />
+          <Property Name="ProDate" Type="Int32" />
+          <Property Name="Mileage" Type="Int32" />
+          <Property Name="StrokeCapacity" Type="Int32" />
+          <Property Name="Power" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BodyTypes" Relationship="Self.FK_Announcements_BodyTypes" FromRole="Announcements" ToRole="BodyTypes" />
+          <NavigationProperty Name="Colors" Relationship="Self.FK_Announcements_Colors" FromRole="Announcements" ToRole="Colors" />
+          <NavigationProperty Name="Models" Relationship="Self.FK_Announcements_Models" FromRole="Announcements" ToRole="Models" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Announcements_Users" FromRole="Announcements" ToRole="Users" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bills_Announcements" FromRole="Announcements" ToRole="Bills" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_Announcements" FromRole="Announcements" ToRole="Messages" />
+        </EntityType>
+        <EntityType Name="BillDiscount">
+          <Key>
+            <PropertyRef Name="IdBillDiscount" />
+          </Key>
+          <Property Name="IdBillDiscount" Type="Int32" Nullable="false" />
+          <Property Name="IdBill" Type="Int32" Nullable="false" />
+          <Property Name="IdDiscount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_BillDiscount_Bills" FromRole="BillDiscount" ToRole="Bills" />
+          <NavigationProperty Name="Discounts" Relationship="Self.FK_BillDiscount_Discounts" FromRole="BillDiscount" ToRole="Discounts" />
+        </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="IdBill" />
+          </Key>
+          <Property Name="IdBill" Type="Int32" Nullable="false" />
+          <Property Name="IdService" Type="Int32" Nullable="false" />
+          <Property Name="IdAnnouncement" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="FinalValue" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK_Bills_Announcements" FromRole="Bills" ToRole="Announcements" />
+          <NavigationProperty Name="BillDiscount" Relationship="Self.FK_BillDiscount_Bills" FromRole="Bills" ToRole="BillDiscount" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_Bills_Services" FromRole="Bills" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="BodyTypes">
+          <Key>
+            <PropertyRef Name="IdBodyType" />
+          </Key>
+          <Property Name="IdBodyType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK_Announcements_BodyTypes" FromRole="BodyTypes" ToRole="Announcements" />
+        </EntityType>
+        <EntityType Name="Brands">
+          <Key>
+            <PropertyRef Name="IdBrand" />
+          </Key>
+          <Property Name="IdBrand" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Models" Relationship="Self.FK_Models_Brands" FromRole="Brands" ToRole="Models" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="IdColor" />
+          </Key>
+          <Property Name="IdColor" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK_Announcements_Colors" FromRole="Colors" ToRole="Announcements" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="IdDiscount" />
+          </Key>
+          <Property Name="IdDiscount" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiscountValue" Type="Int32" Nullable="false" />
+          <Property Name="UsesLeft" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BillDiscount" Relationship="Self.FK_BillDiscount_Discounts" FromRole="Discounts" ToRole="BillDiscount" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="IdMessage" />
+          </Key>
+          <Property Name="IdMessage" Type="Int32" Nullable="false" />
+          <Property Name="IdAnnouncement" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK_Messages_Announcements" FromRole="Messages" ToRole="Announcements" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Messages_Users" FromRole="Messages" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Models">
+          <Key>
+            <PropertyRef Name="IdModel" />
+          </Key>
+          <Property Name="IdModel" Type="Int32" Nullable="false" />
+          <Property Name="IdBrand" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK_Announcements_Models" FromRole="Models" ToRole="Announcements" />
+          <NavigationProperty Name="Brands" Relationship="Self.FK_Models_Brands" FromRole="Models" ToRole="Brands" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="IdService" />
+          </Key>
+          <Property Name="IdService" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bills_Services" FromRole="Services" ToRole="Bills" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK_Announcements_Users" FromRole="Users" ToRole="Announcements" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_Users" FromRole="Users" ToRole="Messages" />
+        </EntityType>
+        <Association Name="FK_Announcements_BodyTypes">
+          <End Role="BodyTypes" Type="Self.BodyTypes" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BodyTypes">
+              <PropertyRef Name="IdBodyType" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="IdBodyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcements_Colors">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="IdColor" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="IdColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcements_Models">
+          <End Role="Models" Type="Self.Models" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="IdModel" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="IdModel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcements_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Announcements">
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Announcements">
+              <PropertyRef Name="IdAnnouncement" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="IdAnnouncement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Announcements">
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Announcements">
+              <PropertyRef Name="IdAnnouncement" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="IdAnnouncement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDiscount_Bills">
+          <End Role="Bills" Type="Self.Bills" Multiplicity="1" />
+          <End Role="BillDiscount" Type="Self.BillDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bills">
+              <PropertyRef Name="IdBill" />
+            </Principal>
+            <Dependent Role="BillDiscount">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDiscount_Discounts">
+          <End Role="Discounts" Type="Self.Discounts" Multiplicity="1" />
+          <End Role="BillDiscount" Type="Self.BillDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discounts">
+              <PropertyRef Name="IdDiscount" />
+            </Principal>
+            <Dependent Role="BillDiscount">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="IdService" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Models_Brands">
+          <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+          <End Role="Models" Type="Self.Models" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="IdBrand" />
+            </Principal>
+            <Dependent Role="Models">
+              <PropertyRef Name="IdBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MotoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Announcements" EntityType="Self.Announcements" />
+          <EntitySet Name="BillDiscount" EntityType="Self.BillDiscount" />
+          <EntitySet Name="Bills" EntityType="Self.Bills" />
+          <EntitySet Name="BodyTypes" EntityType="Self.BodyTypes" />
+          <EntitySet Name="Brands" EntityType="Self.Brands" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" />
+          <EntitySet Name="Discounts" EntityType="Self.Discounts" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" />
+          <EntitySet Name="Models" EntityType="Self.Models" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Announcements_BodyTypes" Association="Self.FK_Announcements_BodyTypes">
+            <End Role="BodyTypes" EntitySet="BodyTypes" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcements_Colors" Association="Self.FK_Announcements_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcements_Models" Association="Self.FK_Announcements_Models">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcements_Users" Association="Self.FK_Announcements_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Announcements" Association="Self.FK_Bills_Announcements">
+            <End Role="Announcements" EntitySet="Announcements" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Announcements" Association="Self.FK_Messages_Announcements">
+            <End Role="Announcements" EntitySet="Announcements" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDiscount_Bills" Association="Self.FK_BillDiscount_Bills">
+            <End Role="Bills" EntitySet="Bills" />
+            <End Role="BillDiscount" EntitySet="BillDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDiscount_Discounts" Association="Self.FK_BillDiscount_Discounts">
+            <End Role="Discounts" EntitySet="Discounts" />
+            <End Role="BillDiscount" EntitySet="BillDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Services" Association="Self.FK_Bills_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Models_Brands" Association="Self.FK_Models_Brands">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Models" EntitySet="Models" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users" Association="Self.FK_Messages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MotoModelStoreContainer" CdmEntityContainer="MotoEntities">
+          <EntitySetMapping Name="Announcements">
+            <EntityTypeMapping TypeName="MotoModel.Announcements">
+              <MappingFragment StoreEntitySet="Announcements">
+                <ScalarProperty Name="IdAnnouncement" ColumnName="IdAnnouncement" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="IdModel" ColumnName="IdModel" />
+                <ScalarProperty Name="IdBodyType" ColumnName="IdBodyType" />
+                <ScalarProperty Name="IdColor" ColumnName="IdColor" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Negotiable" ColumnName="Negotiable" />
+                <ScalarProperty Name="ProDate" ColumnName="ProDate" />
+                <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+                <ScalarProperty Name="StrokeCapacity" ColumnName="StrokeCapacity" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillDiscount">
+            <EntityTypeMapping TypeName="MotoModel.BillDiscount">
+              <MappingFragment StoreEntitySet="BillDiscount">
+                <ScalarProperty Name="IdBillDiscount" ColumnName="IdBillDiscount" />
+                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="MotoModel.Bills">
+              <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="IdAnnouncement" ColumnName="IdAnnouncement" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="FinalValue" ColumnName="FinalValue" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BodyTypes">
+            <EntityTypeMapping TypeName="MotoModel.BodyTypes">
+              <MappingFragment StoreEntitySet="BodyTypes">
+                <ScalarProperty Name="IdBodyType" ColumnName="IdBodyType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="MotoModel.Brands">
+              <MappingFragment StoreEntitySet="Brands">
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="MotoModel.Colors">
+              <MappingFragment StoreEntitySet="Colors">
+                <ScalarProperty Name="IdColor" ColumnName="IdColor" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="MotoModel.Discounts">
+              <MappingFragment StoreEntitySet="Discounts">
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DiscountValue" ColumnName="DiscountValue" />
+                <ScalarProperty Name="UsesLeft" ColumnName="UsesLeft" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="MotoModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="IdMessage" ColumnName="IdMessage" />
+                <ScalarProperty Name="IdAnnouncement" ColumnName="IdAnnouncement" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Models">
+            <EntityTypeMapping TypeName="MotoModel.Models">
+              <MappingFragment StoreEntitySet="Models">
+                <ScalarProperty Name="IdModel" ColumnName="IdModel" />
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="MotoModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MotoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MotoModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
