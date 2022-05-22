@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfMoto.ViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfMoto.ViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfAnnouncementForView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnnouncementForView" nillable="true" type="tns:AnnouncementForView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnnouncementForView" nillable="true" type="tns:ArrayOfAnnouncementForView" />
+  <xs:complexType name="AnnouncementForView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BodyTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrandName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdAnnouncement" type="xs:int" />
+      <xs:element minOccurs="0" name="Mileage" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModelName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Negotiable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Power" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Price" type="xs:int" />
+      <xs:element minOccurs="0" name="ProDate" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StrokeCapacity" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnnouncementForView" nillable="true" type="tns:AnnouncementForView" />
+</xs:schema>

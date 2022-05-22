@@ -1,7 +1,5 @@
-﻿using AppMobileMoto.ViewModels;
-using AppMobileMoto.Views;
+﻿using AppMobileMoto.Views;
 using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace AppMobileMoto

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AppMobileMoto.Models
+﻿namespace AppMobileMoto.Models
 {
     public class Item
     {

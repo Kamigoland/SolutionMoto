@@ -68,7 +68,7 @@ namespace AppMoblieMoto.ViewModels
 
         private async void OnAddItem(object obj)
         {
-             await Shell.Current.GoToAsync(nameof(NewClientPage));
+            await Shell.Current.GoToAsync(nameof(NewClientPage));
         }
 
         async void OnItemSelected(Client item)

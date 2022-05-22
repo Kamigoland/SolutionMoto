@@ -1,8 +1,5 @@
 ﻿using AppMobileMoto.Services;
-using AppMobileMoto.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace AppMobileMoto
 {

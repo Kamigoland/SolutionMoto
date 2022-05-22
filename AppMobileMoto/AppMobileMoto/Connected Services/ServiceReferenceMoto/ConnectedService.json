@@ -1,0 +1,25 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://localhost:64946/MotoService.svc"
+    ],
+    "collectionTypes": [
+      "System.Collections.Generic.Dictionary`2",
+      "System.Collections.Generic.List`1"
+    ],
+    "messageContract": true,
+    "namespaceMappings": [
+      "*, ServiceReferenceMoto"
+    ],
+    "references": [
+      "System.Numerics.Vectors, {System.Numerics.Vectors, 4.5.0}",
+      "Xamarin.Essentials, {Xamarin.Essentials, 1.7.0}",
+      "Xamarin.Forms.Core, {Xamarin.Forms, 5.0.0.2196}",
+      "Xamarin.Forms.Platform, {Xamarin.Forms, 5.0.0.2196}",
+      "Xamarin.Forms.Xaml, {Xamarin.Forms, 5.0.0.2196}"
+    ],
+    "sync": true,
+    "targetFramework": "netstandard2.0",
+    "typeReuseMode": "All"
+  }
+}

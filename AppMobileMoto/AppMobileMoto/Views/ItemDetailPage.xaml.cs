@@ -1,5 +1,4 @@
 ﻿using AppMobileMoto.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace AppMobileMoto.Views

@@ -1,14 +1,5 @@
-﻿using AppMobileMoto.Models;
-using AppMobileMoto.ViewModels;
-using AppMobileMoto.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AppMobileMoto.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace AppMobileMoto.Views
 {
