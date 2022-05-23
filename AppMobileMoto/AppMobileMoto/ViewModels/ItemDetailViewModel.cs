@@ -46,8 +46,8 @@ namespace AppMobileMoto.ViewModels
             try
             {
                 var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
+                Id = item.IdAnnouncement;
+                Text = item.Title;
                 Description = item.Description;
             }
             catch (Exception)

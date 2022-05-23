@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using WcfMoto.Model;
+using WcfMoto.Utils;
 
 namespace WcfMoto.ViewModels
 {
@@ -35,24 +36,21 @@ namespace WcfMoto.ViewModels
         [DataMember]
         public int? Power { get; set; }
         public bool IsActive { get; set; }
+        public static implicit operator Announcements(AnnouncementForView announcement)
+        {
+            var res = new Announcements();
+            res.CopyProperties(announcement);
+            return res;
+        }
         public AnnouncementForView() { }
         public AnnouncementForView(Announcements Announcement)
         {
-            IdAnnouncement = Announcement.IdAnnouncement;
             UserName = Announcement.Users.Username;
             BrandName = Announcement.Models.Brands.Name;
             ModelName = Announcement.Models.Name;
             BodyTypeName = Announcement.BodyTypes.Name;
             ColorName = Announcement.Colors.Name;
-            Title = Announcement.Title;
-            Description = Announcement.Description;
-            Price = Announcement.Price;
-            Negotiable = Announcement.Negotiable;
-            ProDate = Announcement.ProDate;
-            Mileage = Announcement.Mileage;
-            StrokeCapacity = Announcement.StrokeCapacity;
-            Power = Announcement.Power;
-            IsActive = Announcement.IsActive;
+            this.CopyProperties(Announcement);
         }
 
 

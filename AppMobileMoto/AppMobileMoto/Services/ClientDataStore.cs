@@ -1,53 +1,44 @@
 ﻿using AppMobileMoto.Models;
-using System.Collections.Generic;
+using ServiceReferenceMoto;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace AppMobileMoto.Services
 {
-    public class ClientDataStore : IDataStore<Client>
+    public class ClientDataStore : AbstractDataStore<Client>
     {
-        readonly List<Client> items;
-
         public ClientDataStore()
+            : base()
         {
-            items = new List<Client>()
+            //items = MotoService.GetUsers(new GetUsersRequest()).GetUsersResult.Select(u => new Client(u)).ToList();
+            Refresh();
+        }
+        public void Refresh()
+        {
+            items = MotoService.GetUsers(new GetUsersRequest()).GetUsersResult.Select(u => new Client(u)).ToList();
+        }
+        public override Client Find(Client item)
+        {
+            return items.Where((Client arg) => arg.IdUser == item.IdUser).FirstOrDefault();
+        }
+        public override Client Find(int id)
+        {
+            return items.Where((Client arg) => arg.IdUser == id).FirstOrDefault();
+        }
+
+        public override async Task<bool> AddItemAsync(Client item)
+        {
+            var passed = MotoService.AddOrUpdateUser(new AddOrUpdateUserRequest(item)).AddOrUpdateUserResult;
+            if (!passed)
             {
-                new Client { IdClient = 1, Name = "Clientt 11", Adres="New Sącz 1",PhoneNumber="1" },
-                new Client { IdClient = 2, Name = "Cliennt 22", Adres="New Sącz 2",PhoneNumber="2" },
-                new Client { IdClient = 3, Name = "Clieent 33", Adres="New Sącz 3",PhoneNumber="3" }
-            };
-        }
-
-        public async Task<bool> AddItemAsync(Client item)
-        {
-            items.Add(item);
-            return await Task.FromResult(true);
-        }
-
-        public async Task<bool> UpdateItemAsync(Client item)
-        {
-            var oldItem = items.Where((Client arg) => arg.IdClient == item.IdClient).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
-            return await Task.FromResult(true);
-        }
-
-        public async Task<bool> DeleteItemAsync(int id)
-        {
-            var oldItem = items.Where((Client arg) => arg.IdClient == id).FirstOrDefault();
-            items.Remove(oldItem);
-            return await Task.FromResult(true);
-        }
-
-        public async Task<Client> GetItemAsync(int id)
-        {
-            return await Task.FromResult(items.FirstOrDefault(s => s.IdClient == id));
-        }
-
-        public async Task<IEnumerable<Client>> GetItemsAsync(bool forceRefresh = false)
-        {
-            return await Task.FromResult(items);
+                return await Task.FromResult(false);
+            }
+            else
+            {
+                Refresh();
+                return await Task.FromResult(true);
+            }
         }
     }
 }

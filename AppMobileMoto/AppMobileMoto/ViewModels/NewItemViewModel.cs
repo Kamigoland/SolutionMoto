@@ -1,25 +1,19 @@
 ﻿using AppMobileMoto.Models;
-using AppMobileMoto.Services;
 using System;
-using Xamarin.Forms;
 
 namespace AppMobileMoto.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class NewItemViewModel : ANewItemViewModel<Item>
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         private string text;
         private string description;
-
         public NewItemViewModel()
+            : base()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
-            CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
+
         }
 
-        private bool ValidateSave()
+        public override bool ValidateSave()
         {
             return !String.IsNullOrWhiteSpace(text)
                 && !String.IsNullOrWhiteSpace(description);
@@ -30,35 +24,21 @@ namespace AppMobileMoto.ViewModels
             get => text;
             set => SetProperty(ref text, value);
         }
-
         public string Description
         {
             get => description;
             set => SetProperty(ref description, value);
         }
-
-        public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
-
-        private async void OnCancel()
-        {
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
-        }
-
-        private async void OnSave()
+        public override Item SetItem()
         {
             Item newItem = new Item()
             {
-                Id = 0,
-                Text = Text,
+                IdAnnouncement = 1,
+                Title = Text,
                 Description = Description
             };
-
-            await DataStore.AddItemAsync(newItem);
-
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+            return newItem;
         }
     }
+
 }

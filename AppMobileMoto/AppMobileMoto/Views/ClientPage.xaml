@@ -17,13 +17,13 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Client">
-                        <Label Text="{Binding Name}" 
+                        <Label Text="{Binding Username}" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
-                        <Label Text="{Binding Adres}" 
+                        <Label Text="{Binding Password}" 
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <Label Text="{Binding PhoneNumber}" 
+                        <Label Text="{Binding IsActive}" 
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
                         <StackLayout.GestureRecognizers>

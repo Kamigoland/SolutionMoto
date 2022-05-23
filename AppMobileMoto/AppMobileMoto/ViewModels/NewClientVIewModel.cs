@@ -1,34 +1,21 @@
 ﻿using AppMobileMoto.Models;
-using AppMobileMoto.Services;
 using System;
-using Xamarin.Forms;
 
 
 namespace AppMobileMoto.ViewModels
 {
-    public class NewClientViewModel : BaseViewModel
+    public class NewClientViewModel : ANewItemViewModel<Client>
     {
-        public IDataStore<Client> DataStore => DependencyService.Get<IDataStore<Client>>();
-        private int idClient;
         private string name;
         private string adres;
-        private string phoneNumber;
+        private bool phoneNumber;
         public NewClientViewModel()
+            : base()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
-            CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
         }
-        private bool ValidateSave()
+        public override bool ValidateSave()
         {
-            return IdClient > 0
-                && !String.IsNullOrWhiteSpace(Name);
-        }
-        public int IdClient
-        {
-            get => idClient;
-            set => SetProperty(ref idClient, value);
+            return !String.IsNullOrWhiteSpace(name);
         }
         public string Name
         {
@@ -40,29 +27,21 @@ namespace AppMobileMoto.ViewModels
             get => adres;
             set => SetProperty(ref adres, value);
         }
-        public string PhoneNumber
+        public bool PhoneNumber
         {
             get => phoneNumber;
             set => SetProperty(ref phoneNumber, value);
         }
-        public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
-        private async void OnCancel()
-        {
-            await Shell.Current.GoToAsync("..");
-        }
-        private async void OnSave()
+        public override Client SetItem()
         {
             Client newItem = new Client()
             {
-                IdClient = IdClient,
-                Name = Name,
-                Adres = Adres,
-                PhoneNumber = PhoneNumber
+                IdUser = 0,
+                Username = Name,
+                Password = adres,
+                IsActive = PhoneNumber
             };
-            await DataStore.AddItemAsync(newItem);
-            await Shell.Current.GoToAsync("..");
+            return newItem;
         }
     }
-
 }

@@ -10,8 +10,9 @@ namespace AppMobileMoto
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<ItemDataStore>();
             DependencyService.Register<ClientDataStore>();
+            DependencyService.Register<ServiceReferenceMoto.MotoServiceClient>();
             MainPage = new AppShell();
         }
 

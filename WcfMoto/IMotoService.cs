@@ -12,7 +12,19 @@ namespace WcfMoto
         List<AnnouncementForView> GetAnnouncements();
 
         [OperationContract]
+        bool AddOrUpdateAnnouncements(AnnouncementForView announcement);
+
+        [OperationContract]
         List<AnnouncementForView> GetAnnoucementSortByTitle();
+        [OperationContract]
+        List<UserForView> GetUsers();
+
+        [OperationContract]
+        List<UserForView> GetUsersSortByUsername();
+
+        [OperationContract]
+        bool AddOrUpdateUser(UserForView User);
+
 
         // TODO: Add your service operations here
     }
