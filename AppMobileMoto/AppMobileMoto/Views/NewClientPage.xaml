@@ -7,14 +7,10 @@
              >
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Id" FontSize="Medium" />
-            <Entry Text="{Binding IdClient, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Name" FontSize="Medium" />
+            <Label Text="Username" FontSize="Medium" />
             <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="Medium"/>
-            <Label Text="Adres" FontSize="Medium" />
+            <Label Text="Password" FontSize="Medium" />
             <Editor Text="{Binding Adres, Mode=TwoWay}" FontSize="Medium"/>
-            <Label Text="PhoneNumber" FontSize="Medium" />
-            <Editor Text="{Binding PhoneNumber, Mode=TwoWay}" FontSize="Medium"/>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

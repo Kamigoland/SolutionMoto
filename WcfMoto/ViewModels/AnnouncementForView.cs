@@ -10,6 +10,8 @@ namespace WcfMoto.ViewModels
         [DataMember]
         public int IdAnnouncement { get; set; }
         [DataMember]
+        public int IdUser { get; set; }
+        [DataMember]
         public string UserName { get; set; }
         [DataMember]
         public string BrandName { get; set; }
@@ -35,6 +37,7 @@ namespace WcfMoto.ViewModels
         public int? StrokeCapacity { get; set; }
         [DataMember]
         public int? Power { get; set; }
+        [DataMember]
         public bool IsActive { get; set; }
         public static implicit operator Announcements(AnnouncementForView announcement)
         {

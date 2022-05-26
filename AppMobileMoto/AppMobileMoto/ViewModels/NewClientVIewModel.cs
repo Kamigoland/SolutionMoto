@@ -39,7 +39,7 @@ namespace AppMobileMoto.ViewModels
                 IdUser = 0,
                 Username = Name,
                 Password = adres,
-                IsActive = PhoneNumber
+                IsActive = true
             };
             return newItem;
         }

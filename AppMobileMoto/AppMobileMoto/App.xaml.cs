@@ -9,7 +9,9 @@ namespace AppMobileMoto
         public App()
         {
             InitializeComponent();
-
+            DependencyService.Register<BrandDataStore>();
+            DependencyService.Register<MessagesDataStore>();
+            DependencyService.Register<BillDataStore>();
             DependencyService.Register<ItemDataStore>();
             DependencyService.Register<ClientDataStore>();
             DependencyService.Register<ServiceReferenceMoto.MotoServiceClient>();

@@ -3,7 +3,7 @@ using AppMobileMoto.ViewModels;
 using AppMobileMoto.Views;
 using Xamarin.Forms;
 
-namespace AppMoblieMoto.ViewModels
+namespace AppMobileMoto.ViewModels
 {
     public class ClientViewModel : AItemsViewModel<Client>
     {
@@ -15,6 +15,7 @@ namespace AppMoblieMoto.ViewModels
         {
             Shell.Current.GoToAsync(nameof(NewClientPage));
         }
+
     }
 
 }

@@ -5,6 +5,11 @@ namespace AppMobileMoto.Models
     public class Item
     {
         public int IdAnnouncement { get; set; }
+        public int IdUser { get; set; }
+        public int IdBrand { get; set; }
+        public int IdModel { get; set; }
+        public int IdBodyType { get; set; }
+        public int IdColor { get; set; }
         public string UserName { get; set; }
         public string BrandName { get; set; }
         public string ModelName { get; set; }

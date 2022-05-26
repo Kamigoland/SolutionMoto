@@ -18,6 +18,7 @@ namespace WcfMoto.Model
         public int IdAnnouncement { get; set; }
         public int IdUser { get; set; }
         public string Message { get; set; }
+        public bool FromUser { get; set; }
         public System.DateTime Date { get; set; }
     
         public virtual Announcements Announcements { get; set; }

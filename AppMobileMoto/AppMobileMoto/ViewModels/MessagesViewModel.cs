@@ -1,6 +1,5 @@
 ﻿using AppMobileMoto.Models;
 using AppMobileMoto.Services;
-using AppMobileMoto.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -9,33 +8,47 @@ using Xamarin.Forms;
 
 namespace AppMobileMoto.ViewModels
 {
-    public abstract class AItemsViewModel<T> : BaseViewModel
+    class MessagesViewModel: BaseViewModel
     {
-        public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
-        private T _selectedItem;
-        public ObservableCollection<T> Items { get; }
+        public IDataStore<Messages> DataStore => DependencyService.Get<IDataStore<Messages>>();
+        private Messages _selectedItem;
+
+        public ObservableCollection<Messages> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
-        public Command<T> ItemTapped { get; }
+        public Command<Messages> ItemTapped { get; }
 
-        public AItemsViewModel(string title)
+        public MessagesViewModel()
         {
-            Title = title;
-            Items = new ObservableCollection<T>();
+            Title = "Messages";
+            Items = new ObservableCollection<Messages>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            ItemTapped = new Command<T>(OnItemSelected);
+
+            ItemTapped = new Command<Messages>(OnItemSelected);
+
             AddItemCommand = new Command(OnAddItem);
         }
 
         async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
+
             try
             {
                 Items.Clear();
+                int[] czek = new int[1000];
+                for (int i = 0; i < 1000; i++)
+                {
+                    czek[i] = 0;
+                }
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
+                    //if (czek[item.IdAnnouncement]==0)
+                    //{
+                    //    czek[item.IdAnnouncement] = 1;
+                    //    Items.Add(item);
+                    //}
                     Items.Add(item);
                 }
             }
@@ -48,13 +61,14 @@ namespace AppMobileMoto.ViewModels
                 IsBusy = false;
             }
         }
+
         public void OnAppearing()
         {
             IsBusy = true;
-            SelectedItem = default(T);
+            SelectedItem = null;
         }
 
-        public T SelectedItem
+        public Messages SelectedItem
         {
             get => _selectedItem;
             set
@@ -63,22 +77,19 @@ namespace AppMobileMoto.ViewModels
                 OnItemSelected(value);
             }
         }
-        public abstract void GoToAddPage();
-        public async void OnAddItem(object obj)
+
+        private async void OnAddItem(object obj)
         {
-            GoToAddPage();
+            //await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(T item)
+        async void OnItemSelected(Messages item)
         {
             if (item == null)
                 return;
-            if (item is Item)
-            {
-                await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={1}");
-            }
-            
+
+            // This will push the ItemDetailPage onto the navigation stack
+            //await Shell.Current.GoToAsync($"{nameof(MessageDetailPage)}?{nameof(MessageDetailViewModel.ItemId)}={item.IdAnnouncement}");
         }
     }
 }
-

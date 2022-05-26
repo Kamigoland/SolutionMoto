@@ -1,4 +1,5 @@
-﻿using ServiceReferenceMoto;
+﻿using AppMobileMoto.Models;
+using ServiceReferenceMoto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -8,6 +9,17 @@ namespace AppMobileMoto.Services
     public abstract class AbstractDataStore<T> : IDataStore<T>
     {
         public List<T> items;
+        public List<T> Items
+        {
+            get
+            {
+                //if (items == null || !items.Any())
+                //{
+                //    Refresh();
+                //}
+                return items;
+            }
+        }
         public IMotoService MotoService;
 
         public AbstractDataStore()

@@ -106,5 +106,89 @@ namespace WcfMoto
                 return false;
             }
         }
+
+        public List<BillForView> GetBills()
+        {
+            var dbContext = new MotoEntities();
+            var query = from Bills in dbContext.Bills select Bills;
+            return query.ToList()
+                .Select(Bills => new BillForView(Bills))
+                .ToList();
+        }
+        public List<BillForView> GetUserBills(int id)
+        {
+            var dbContext = new MotoEntities();
+            var query = from Bills in dbContext.Bills where Bills.IdUser==id select Bills;
+            return query.ToList()
+                .Select(Bills => new BillForView(Bills))
+                .ToList();
+        }
+
+        public List<MessageForView> GetUserMessages(int id)
+        {
+            var dbContext = new MotoEntities();
+            var queryfinale = from Messages in dbContext.Messages 
+                        where Messages.IdUser == id 
+                        select Messages;
+            return queryfinale.ToList()
+                .Select(Messages => new MessageForView(Messages))
+                .ToList();
+        }
+
+        public List<MessageForView> GetUserInAnnouncementMessages(int iduser, int idannouncement)
+        {
+            var dbContext = new MotoEntities();
+            var queryfinale = from Messages in dbContext.Messages
+                              where Messages.IdUser == iduser
+                              where Messages.IdAnnouncement == idannouncement
+                              select Messages;
+            return queryfinale.ToList()
+                .Select(Messages => new MessageForView(Messages))
+                .ToList();
+        }
+
+        public List<BrandForView> GetBrands()
+        {
+            var dbContext = new MotoEntities();
+            var query = from Brands in dbContext.Brands select Brands;
+            return query.ToList()
+                .Select(Brands => new BrandForView(Brands))
+                .ToList();
+        }
+
+        public bool AddAnnouncements(int iduser, int idbrand, int idmodel, int bodytype, int color, string title, string des, int price, bool neg, int prodate, int mileage, int stcap, int power)
+        {
+            try
+            {
+                var db = new MotoEntities();
+                var bestId = (db.Announcements.OrderByDescending(a => a.IdAnnouncement).FirstOrDefault()?.IdAnnouncement ?? 0) + 1;
+                Announcements announcement = new Announcements();
+                announcement.IdAnnouncement = bestId;
+                announcement.IdUser = iduser;
+                announcement.IdBrand = idbrand;
+                announcement.IdModel = idmodel;
+                announcement.IdBodyType = bodytype;
+                announcement.IdColor = color;
+                announcement.Title = title;
+                announcement.Description = des;
+                announcement.Price = price;
+                announcement.Negotiable = neg;
+                announcement.ProDate = prodate;
+                announcement.Mileage = mileage;
+                announcement.StrokeCapacity = stcap;
+                announcement.Power = power;
+                announcement.IsActive = true;
+
+                db.Announcements.Add(announcement);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine($"Exception occured {e.Message}");
+                return false;
+            }
+        }
     }
 }

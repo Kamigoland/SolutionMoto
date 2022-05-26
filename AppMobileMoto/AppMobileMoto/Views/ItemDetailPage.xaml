@@ -3,12 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMobileMoto.Views.ItemDetailPage"
              Title="{Binding Title}">
-
+    
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Text}" FontSize="Small"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0"  Text="{Binding Text}" FontSize="Medium"/>
+            <Label Grid.Column="1" Grid.Row="0" Text="{Binding UserName}" FontSize="Small"/>
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0"  Text="Price PLN:" FontSize="Small"/>
+            <Label Grid.Column="1" Grid.Row="0" Text="{Binding Price}" FontSize="Small"/>
+            <Label Grid.Column="2" Grid.Row="0" Text="{Binding Negotiable}" FontSize="Small" />
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Text="Brand:" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="1" Grid.Row="0" Text="{Binding BrandName}" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="2" Grid.Row="0" Text="Model:" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="3" Grid.Row="0" Text="{Binding ModelName}" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="0" Grid.Row="1" Text="Stroke Capacity:" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="1" Grid.Row="1" Text="{Binding StrokeCapacity}" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="2" Grid.Row="1" Text="Power HW:" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="3" Grid.Row="1" Text="{Binding Power}" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="0" Grid.Row="2" Text="Mileage:" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="1" Grid.Row="2" Text="{Binding Mileage}" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="2" Grid.Row="2" Text="Production Date:" FontSize="Small" HorizontalOptions="Center" />
+            <Label Grid.Column="3" Grid.Row="2" Text="{Binding ProDate}" FontSize="Small" HorizontalOptions="Center" />
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0"  Text="Color:" FontSize="Small" HorizontalOptions="End"/>
+            <Label Grid.Column="1" Grid.Row="0" Text="{Binding ColorName}" FontSize="Small"/>
+        </Grid>
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Description}" FontSize="Small"/>
+        <Button Text="Message Seller" Command="{Binding AddItemCommand}"/>
     </StackLayout>
     
 </ContentPage>

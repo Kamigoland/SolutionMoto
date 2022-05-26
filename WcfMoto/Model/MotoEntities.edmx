@@ -25,14 +25,6 @@
           <Property Name="Power" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="BillDiscount">
-          <Key>
-            <PropertyRef Name="IdBillDiscount" />
-          </Key>
-          <Property Name="IdBillDiscount" Type="int" Nullable="false" />
-          <Property Name="IdBill" Type="int" Nullable="false" />
-          <Property Name="IdDiscount" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Bills">
           <Key>
             <PropertyRef Name="IdBill" />
@@ -68,15 +60,6 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Discounts">
-          <Key>
-            <PropertyRef Name="IdDiscount" />
-          </Key>
-          <Property Name="IdDiscount" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DiscountValue" Type="int" Nullable="false" />
-          <Property Name="UsesLeft" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Messages">
           <Key>
             <PropertyRef Name="IdMessage" />
@@ -85,7 +68,8 @@
           <Property Name="IdAnnouncement" Type="int" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="FromUser" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Models">
           <Key>
@@ -172,30 +156,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BillDiscount_Bills">
-          <End Role="Bills" Type="Self.Bills" Multiplicity="1" />
-          <End Role="BillDiscount" Type="Self.BillDiscount" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bills">
-              <PropertyRef Name="IdBill" />
-            </Principal>
-            <Dependent Role="BillDiscount">
-              <PropertyRef Name="IdBill" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BillDiscount_Discounts">
-          <End Role="Discounts" Type="Self.Discounts" Multiplicity="1" />
-          <End Role="BillDiscount" Type="Self.BillDiscount" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Discounts">
-              <PropertyRef Name="IdDiscount" />
-            </Principal>
-            <Dependent Role="BillDiscount">
-              <PropertyRef Name="IdDiscount" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Bills_Announcements">
           <End Role="Announcements" Type="Self.Announcements" Multiplicity="1" />
           <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
@@ -258,12 +218,10 @@
         </Association>
         <EntityContainer Name="MotoModelStoreContainer">
           <EntitySet Name="Announcements" EntityType="Self.Announcements" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BillDiscount" EntityType="Self.BillDiscount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BodyTypes" EntityType="Self.BodyTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Models" EntityType="Self.Models" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
@@ -284,14 +242,6 @@
           <AssociationSet Name="FK_Announcements_Users" Association="Self.FK_Announcements_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Announcements" EntitySet="Announcements" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BillDiscount_Bills" Association="Self.FK_BillDiscount_Bills">
-            <End Role="Bills" EntitySet="Bills" />
-            <End Role="BillDiscount" EntitySet="BillDiscount" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BillDiscount_Discounts" Association="Self.FK_BillDiscount_Discounts">
-            <End Role="Discounts" EntitySet="Discounts" />
-            <End Role="BillDiscount" EntitySet="BillDiscount" />
           </AssociationSet>
           <AssociationSet Name="FK_Bills_Announcements" Association="Self.FK_Bills_Announcements">
             <End Role="Announcements" EntitySet="Announcements" />
@@ -345,16 +295,6 @@
           <NavigationProperty Name="Bills" Relationship="Self.FK_Bills_Announcements" FromRole="Announcements" ToRole="Bills" />
           <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_Announcements" FromRole="Announcements" ToRole="Messages" />
         </EntityType>
-        <EntityType Name="BillDiscount">
-          <Key>
-            <PropertyRef Name="IdBillDiscount" />
-          </Key>
-          <Property Name="IdBillDiscount" Type="Int32" Nullable="false" />
-          <Property Name="IdBill" Type="Int32" Nullable="false" />
-          <Property Name="IdDiscount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bills" Relationship="Self.FK_BillDiscount_Bills" FromRole="BillDiscount" ToRole="Bills" />
-          <NavigationProperty Name="Discounts" Relationship="Self.FK_BillDiscount_Discounts" FromRole="BillDiscount" ToRole="Discounts" />
-        </EntityType>
         <EntityType Name="Bills">
           <Key>
             <PropertyRef Name="IdBill" />
@@ -366,7 +306,6 @@
           <Property Name="FinalValue" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
           <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Announcements" Relationship="Self.FK_Bills_Announcements" FromRole="Bills" ToRole="Announcements" />
-          <NavigationProperty Name="BillDiscount" Relationship="Self.FK_BillDiscount_Bills" FromRole="Bills" ToRole="BillDiscount" />
           <NavigationProperty Name="Services" Relationship="Self.FK_Bills_Services" FromRole="Bills" ToRole="Services" />
         </EntityType>
         <EntityType Name="BodyTypes">
@@ -396,16 +335,6 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Announcements" Relationship="Self.FK_Announcements_Colors" FromRole="Colors" ToRole="Announcements" />
         </EntityType>
-        <EntityType Name="Discounts">
-          <Key>
-            <PropertyRef Name="IdDiscount" />
-          </Key>
-          <Property Name="IdDiscount" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DiscountValue" Type="Int32" Nullable="false" />
-          <Property Name="UsesLeft" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BillDiscount" Relationship="Self.FK_BillDiscount_Discounts" FromRole="Discounts" ToRole="BillDiscount" />
-        </EntityType>
         <EntityType Name="Messages">
           <Key>
             <PropertyRef Name="IdMessage" />
@@ -414,7 +343,8 @@
           <Property Name="IdAnnouncement" Type="Int32" Nullable="false" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FromUser" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Announcements" Relationship="Self.FK_Messages_Announcements" FromRole="Messages" ToRole="Announcements" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Messages_Users" FromRole="Messages" ToRole="Users" />
         </EntityType>
@@ -532,30 +462,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BillDiscount_Bills">
-          <End Role="Bills" Type="Self.Bills" Multiplicity="1" />
-          <End Role="BillDiscount" Type="Self.BillDiscount" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bills">
-              <PropertyRef Name="IdBill" />
-            </Principal>
-            <Dependent Role="BillDiscount">
-              <PropertyRef Name="IdBill" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BillDiscount_Discounts">
-          <End Role="Discounts" Type="Self.Discounts" Multiplicity="1" />
-          <End Role="BillDiscount" Type="Self.BillDiscount" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Discounts">
-              <PropertyRef Name="IdDiscount" />
-            </Principal>
-            <Dependent Role="BillDiscount">
-              <PropertyRef Name="IdDiscount" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Bills_Services">
           <End Role="Services" Type="Self.Services" Multiplicity="1" />
           <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
@@ -594,12 +500,10 @@
         </Association>
         <EntityContainer Name="MotoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Announcements" EntityType="Self.Announcements" />
-          <EntitySet Name="BillDiscount" EntityType="Self.BillDiscount" />
           <EntitySet Name="Bills" EntityType="Self.Bills" />
           <EntitySet Name="BodyTypes" EntityType="Self.BodyTypes" />
           <EntitySet Name="Brands" EntityType="Self.Brands" />
           <EntitySet Name="Colors" EntityType="Self.Colors" />
-          <EntitySet Name="Discounts" EntityType="Self.Discounts" />
           <EntitySet Name="Messages" EntityType="Self.Messages" />
           <EntitySet Name="Models" EntityType="Self.Models" />
           <EntitySet Name="Services" EntityType="Self.Services" />
@@ -628,14 +532,6 @@
           <AssociationSet Name="FK_Messages_Announcements" Association="Self.FK_Messages_Announcements">
             <End Role="Announcements" EntitySet="Announcements" />
             <End Role="Messages" EntitySet="Messages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BillDiscount_Bills" Association="Self.FK_BillDiscount_Bills">
-            <End Role="Bills" EntitySet="Bills" />
-            <End Role="BillDiscount" EntitySet="BillDiscount" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BillDiscount_Discounts" Association="Self.FK_BillDiscount_Discounts">
-            <End Role="Discounts" EntitySet="Discounts" />
-            <End Role="BillDiscount" EntitySet="BillDiscount" />
           </AssociationSet>
           <AssociationSet Name="FK_Bills_Services" Association="Self.FK_Bills_Services">
             <End Role="Services" EntitySet="Services" />
@@ -674,15 +570,6 @@
                 <ScalarProperty Name="StrokeCapacity" ColumnName="StrokeCapacity" />
                 <ScalarProperty Name="Power" ColumnName="Power" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BillDiscount">
-            <EntityTypeMapping TypeName="MotoModel.BillDiscount">
-              <MappingFragment StoreEntitySet="BillDiscount">
-                <ScalarProperty Name="IdBillDiscount" ColumnName="IdBillDiscount" />
-                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
-                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -725,16 +612,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Discounts">
-            <EntityTypeMapping TypeName="MotoModel.Discounts">
-              <MappingFragment StoreEntitySet="Discounts">
-                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DiscountValue" ColumnName="DiscountValue" />
-                <ScalarProperty Name="UsesLeft" ColumnName="UsesLeft" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Messages">
             <EntityTypeMapping TypeName="MotoModel.Messages">
               <MappingFragment StoreEntitySet="Messages">
@@ -742,6 +619,7 @@
                 <ScalarProperty Name="IdAnnouncement" ColumnName="IdAnnouncement" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="FromUser" ColumnName="FromUser" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>

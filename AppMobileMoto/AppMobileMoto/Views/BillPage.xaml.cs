@@ -1,26 +1,25 @@
-﻿using AppMobileMoto.ViewModels;
+﻿
+using AppMobileMoto.Services;
+using AppMobileMoto.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppMobileMoto.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ClientPage : ContentPage
+    public partial class BillPage : ContentPage
     {
-        ClientViewModel _viewModel;
-
-        public ClientPage()
+        BillViewModel _viewModel;
+        public BillPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ClientViewModel();
+            BindingContext = _viewModel = new BillViewModel();
         }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
             _viewModel.OnAppearing();
         }
     }
-
 }

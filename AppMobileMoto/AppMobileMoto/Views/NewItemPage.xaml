@@ -8,10 +8,30 @@
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Title" FontSize="Medium" />
+            <Entry Text="{Binding Title, Mode=TwoWay}" FontSize="Small" />
+            <Label Text="Price" FontSize="Small" />
+            <Editor Text="{Binding Price, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="Negotiable" FontSize="Small" />
+            <CheckBox IsChecked="{Binding Negotiable, Mode=TwoWay}" Color="Red"/>
+            <Label Text="Brand ID" FontSize="Small" />
+            <Editor Text="{Binding IdBrand, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="Model ID" FontSize="Small" />
+            <Editor Text="{Binding IdModel, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="BodyType ID" FontSize="Small" />
+            <Editor Text="{Binding IdBodyType, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="Color ID" FontSize="Small" />
+            <Editor Text="{Binding IdColor, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="Production year" FontSize="Small" />
+            <Editor Text="{Binding ProDate, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="Mileage" FontSize="Small" />
+            <Editor Text="{Binding Mileage, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="Stroke Capacity" FontSize="Small" />
+            <Editor Text="{Binding StrokeCapacity, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="Power" FontSize="Small" />
+            <Editor Text="{Binding Power, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
+            <Label Text="Description" FontSize="Small" />
+            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Small" Margin="0" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

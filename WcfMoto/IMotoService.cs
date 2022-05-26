@@ -25,6 +25,22 @@ namespace WcfMoto
         [OperationContract]
         bool AddOrUpdateUser(UserForView User);
 
+        [OperationContract]
+        List<BillForView> GetBills();
+        [OperationContract]
+        List<BillForView> GetUserBills(int id);
+        [OperationContract]
+        List<MessageForView> GetUserMessages(int id);
+        [OperationContract]
+        List<MessageForView> GetUserInAnnouncementMessages(int iduser, int idannouncement);
+        [OperationContract]
+        List<BrandForView> GetBrands();
+        [OperationContract]
+        bool AddAnnouncements(int iduser, int idbrand, int idmodel, int bodytype, int color, 
+            string title, string des, int price, bool neg, int prodate, int mileage, int stcap, int power);
+
+
+
 
         // TODO: Add your service operations here
     }

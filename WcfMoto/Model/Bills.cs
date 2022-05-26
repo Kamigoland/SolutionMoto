@@ -14,12 +14,6 @@ namespace WcfMoto.Model
     
     public partial class Bills
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Bills()
-        {
-            this.BillDiscount = new HashSet<BillDiscount>();
-        }
-    
         public int IdBill { get; set; }
         public int IdService { get; set; }
         public int IdAnnouncement { get; set; }
@@ -28,8 +22,6 @@ namespace WcfMoto.Model
         public System.DateTime DateTo { get; set; }
     
         public virtual Announcements Announcements { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillDiscount> BillDiscount { get; set; }
         public virtual Services Services { get; set; }
     }
 }

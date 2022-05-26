@@ -28,6 +28,10 @@ namespace ServiceReferenceMoto
         
         private int IdAnnouncementField;
         
+        private int IdUserField;
+        
+        private bool IsActiveField;
+        
         private System.Nullable<int> MileageField;
         
         private string ModelNameField;
@@ -108,6 +112,32 @@ namespace ServiceReferenceMoto
             set
             {
                 this.IdAnnouncementField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdUser
+        {
+            get
+            {
+                return this.IdUserField;
+            }
+            set
+            {
+                this.IdUserField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsActive
+        {
+            get
+            {
+                return this.IsActiveField;
+            }
+            set
+            {
+                this.IsActiveField = value;
             }
         }
         
@@ -296,6 +326,297 @@ namespace ServiceReferenceMoto
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BillForView", Namespace="http://schemas.datacontract.org/2004/07/WcfMoto.ViewModels")]
+    public partial class BillForView : object
+    {
+        
+        private string AnnouncementTitleField;
+        
+        private System.DateTime DateToField;
+        
+        private decimal FinalValueField;
+        
+        private int IdAnnouncementField;
+        
+        private int IdBillField;
+        
+        private int IdServiceField;
+        
+        private int IdUserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AnnouncementTitle
+        {
+            get
+            {
+                return this.AnnouncementTitleField;
+            }
+            set
+            {
+                this.AnnouncementTitleField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateTo
+        {
+            get
+            {
+                return this.DateToField;
+            }
+            set
+            {
+                this.DateToField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal FinalValue
+        {
+            get
+            {
+                return this.FinalValueField;
+            }
+            set
+            {
+                this.FinalValueField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdAnnouncement
+        {
+            get
+            {
+                return this.IdAnnouncementField;
+            }
+            set
+            {
+                this.IdAnnouncementField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdBill
+        {
+            get
+            {
+                return this.IdBillField;
+            }
+            set
+            {
+                this.IdBillField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdService
+        {
+            get
+            {
+                return this.IdServiceField;
+            }
+            set
+            {
+                this.IdServiceField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdUser
+        {
+            get
+            {
+                return this.IdUserField;
+            }
+            set
+            {
+                this.IdUserField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MessageForView", Namespace="http://schemas.datacontract.org/2004/07/WcfMoto.ViewModels")]
+    public partial class MessageForView : object
+    {
+        
+        private string AnnouncementTitleField;
+        
+        private System.DateTime DateField;
+        
+        private bool FromUserField;
+        
+        private int IdAnnouncementField;
+        
+        private int IdAnnouncementUserField;
+        
+        private int IdMessageField;
+        
+        private int IdUserField;
+        
+        private string MessageField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AnnouncementTitle
+        {
+            get
+            {
+                return this.AnnouncementTitleField;
+            }
+            set
+            {
+                this.AnnouncementTitleField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date
+        {
+            get
+            {
+                return this.DateField;
+            }
+            set
+            {
+                this.DateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool FromUser
+        {
+            get
+            {
+                return this.FromUserField;
+            }
+            set
+            {
+                this.FromUserField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdAnnouncement
+        {
+            get
+            {
+                return this.IdAnnouncementField;
+            }
+            set
+            {
+                this.IdAnnouncementField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdAnnouncementUser
+        {
+            get
+            {
+                return this.IdAnnouncementUserField;
+            }
+            set
+            {
+                this.IdAnnouncementUserField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdMessage
+        {
+            get
+            {
+                return this.IdMessageField;
+            }
+            set
+            {
+                this.IdMessageField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdUser
+        {
+            get
+            {
+                return this.IdUserField;
+            }
+            set
+            {
+                this.IdUserField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message
+        {
+            get
+            {
+                return this.MessageField;
+            }
+            set
+            {
+                this.MessageField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BrandForView", Namespace="http://schemas.datacontract.org/2004/07/WcfMoto.ViewModels")]
+    public partial class BrandForView : object
+    {
+        
+        private int IdBrandField;
+        
+        private bool IsActiveField;
+        
+        private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdBrand
+        {
+            get
+            {
+                return this.IdBrandField;
+            }
+            set
+            {
+                this.IdBrandField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsActive
+        {
+            get
+            {
+                return this.IsActiveField;
+            }
+            set
+            {
+                this.IsActiveField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReferenceMoto.IMotoService")]
     public interface IMotoService
@@ -336,6 +657,42 @@ namespace ServiceReferenceMoto
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/AddOrUpdateUser", ReplyAction="http://tempuri.org/IMotoService/AddOrUpdateUserResponse")]
         System.Threading.Tasks.Task<ServiceReferenceMoto.AddOrUpdateUserResponse> AddOrUpdateUserAsync(ServiceReferenceMoto.AddOrUpdateUserRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetBills", ReplyAction="http://tempuri.org/IMotoService/GetBillsResponse")]
+        ServiceReferenceMoto.GetBillsResponse GetBills(ServiceReferenceMoto.GetBillsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetBills", ReplyAction="http://tempuri.org/IMotoService/GetBillsResponse")]
+        System.Threading.Tasks.Task<ServiceReferenceMoto.GetBillsResponse> GetBillsAsync(ServiceReferenceMoto.GetBillsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetUserBills", ReplyAction="http://tempuri.org/IMotoService/GetUserBillsResponse")]
+        ServiceReferenceMoto.GetUserBillsResponse GetUserBills(ServiceReferenceMoto.GetUserBillsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetUserBills", ReplyAction="http://tempuri.org/IMotoService/GetUserBillsResponse")]
+        System.Threading.Tasks.Task<ServiceReferenceMoto.GetUserBillsResponse> GetUserBillsAsync(ServiceReferenceMoto.GetUserBillsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetUserMessages", ReplyAction="http://tempuri.org/IMotoService/GetUserMessagesResponse")]
+        ServiceReferenceMoto.GetUserMessagesResponse GetUserMessages(ServiceReferenceMoto.GetUserMessagesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetUserMessages", ReplyAction="http://tempuri.org/IMotoService/GetUserMessagesResponse")]
+        System.Threading.Tasks.Task<ServiceReferenceMoto.GetUserMessagesResponse> GetUserMessagesAsync(ServiceReferenceMoto.GetUserMessagesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetUserInAnnouncementMessages", ReplyAction="http://tempuri.org/IMotoService/GetUserInAnnouncementMessagesResponse")]
+        ServiceReferenceMoto.GetUserInAnnouncementMessagesResponse GetUserInAnnouncementMessages(ServiceReferenceMoto.GetUserInAnnouncementMessagesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetUserInAnnouncementMessages", ReplyAction="http://tempuri.org/IMotoService/GetUserInAnnouncementMessagesResponse")]
+        System.Threading.Tasks.Task<ServiceReferenceMoto.GetUserInAnnouncementMessagesResponse> GetUserInAnnouncementMessagesAsync(ServiceReferenceMoto.GetUserInAnnouncementMessagesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetBrands", ReplyAction="http://tempuri.org/IMotoService/GetBrandsResponse")]
+        ServiceReferenceMoto.GetBrandsResponse GetBrands(ServiceReferenceMoto.GetBrandsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/GetBrands", ReplyAction="http://tempuri.org/IMotoService/GetBrandsResponse")]
+        System.Threading.Tasks.Task<ServiceReferenceMoto.GetBrandsResponse> GetBrandsAsync(ServiceReferenceMoto.GetBrandsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/AddAnnouncements", ReplyAction="http://tempuri.org/IMotoService/AddAnnouncementsResponse")]
+        ServiceReferenceMoto.AddAnnouncementsResponse AddAnnouncements(ServiceReferenceMoto.AddAnnouncementsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/AddAnnouncements", ReplyAction="http://tempuri.org/IMotoService/AddAnnouncementsResponse")]
+        System.Threading.Tasks.Task<ServiceReferenceMoto.AddAnnouncementsResponse> AddAnnouncementsAsync(ServiceReferenceMoto.AddAnnouncementsRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -534,6 +891,270 @@ namespace ServiceReferenceMoto
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetBills", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetBillsRequest
+    {
+        
+        public GetBillsRequest()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetBillsResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetBillsResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<ServiceReferenceMoto.BillForView> GetBillsResult;
+        
+        public GetBillsResponse()
+        {
+        }
+        
+        public GetBillsResponse(System.Collections.Generic.List<ServiceReferenceMoto.BillForView> GetBillsResult)
+        {
+            this.GetBillsResult = GetBillsResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserBills", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetUserBillsRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int id;
+        
+        public GetUserBillsRequest()
+        {
+        }
+        
+        public GetUserBillsRequest(int id)
+        {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserBillsResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetUserBillsResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<ServiceReferenceMoto.BillForView> GetUserBillsResult;
+        
+        public GetUserBillsResponse()
+        {
+        }
+        
+        public GetUserBillsResponse(System.Collections.Generic.List<ServiceReferenceMoto.BillForView> GetUserBillsResult)
+        {
+            this.GetUserBillsResult = GetUserBillsResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserMessages", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetUserMessagesRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int id;
+        
+        public GetUserMessagesRequest()
+        {
+        }
+        
+        public GetUserMessagesRequest(int id)
+        {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserMessagesResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetUserMessagesResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<ServiceReferenceMoto.MessageForView> GetUserMessagesResult;
+        
+        public GetUserMessagesResponse()
+        {
+        }
+        
+        public GetUserMessagesResponse(System.Collections.Generic.List<ServiceReferenceMoto.MessageForView> GetUserMessagesResult)
+        {
+            this.GetUserMessagesResult = GetUserMessagesResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserInAnnouncementMessages", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetUserInAnnouncementMessagesRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int iduser;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int idannouncement;
+        
+        public GetUserInAnnouncementMessagesRequest()
+        {
+        }
+        
+        public GetUserInAnnouncementMessagesRequest(int iduser, int idannouncement)
+        {
+            this.iduser = iduser;
+            this.idannouncement = idannouncement;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserInAnnouncementMessagesResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetUserInAnnouncementMessagesResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<ServiceReferenceMoto.MessageForView> GetUserInAnnouncementMessagesResult;
+        
+        public GetUserInAnnouncementMessagesResponse()
+        {
+        }
+        
+        public GetUserInAnnouncementMessagesResponse(System.Collections.Generic.List<ServiceReferenceMoto.MessageForView> GetUserInAnnouncementMessagesResult)
+        {
+            this.GetUserInAnnouncementMessagesResult = GetUserInAnnouncementMessagesResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetBrands", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetBrandsRequest
+    {
+        
+        public GetBrandsRequest()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetBrandsResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetBrandsResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<ServiceReferenceMoto.BrandForView> GetBrandsResult;
+        
+        public GetBrandsResponse()
+        {
+        }
+        
+        public GetBrandsResponse(System.Collections.Generic.List<ServiceReferenceMoto.BrandForView> GetBrandsResult)
+        {
+            this.GetBrandsResult = GetBrandsResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddAnnouncements", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddAnnouncementsRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int iduser;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int idbrand;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int idmodel;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public int bodytype;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=4)]
+        public int color;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=5)]
+        public string title;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=6)]
+        public string des;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=7)]
+        public int price;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=8)]
+        public bool neg;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=9)]
+        public int prodate;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=10)]
+        public int mileage;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=11)]
+        public int stcap;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=12)]
+        public int power;
+        
+        public AddAnnouncementsRequest()
+        {
+        }
+        
+        public AddAnnouncementsRequest(int iduser, int idbrand, int idmodel, int bodytype, int color, string title, string des, int price, bool neg, int prodate, int mileage, int stcap, int power)
+        {
+            this.iduser = iduser;
+            this.idbrand = idbrand;
+            this.idmodel = idmodel;
+            this.bodytype = bodytype;
+            this.color = color;
+            this.title = title;
+            this.des = des;
+            this.price = price;
+            this.neg = neg;
+            this.prodate = prodate;
+            this.mileage = mileage;
+            this.stcap = stcap;
+            this.power = power;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddAnnouncementsResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddAnnouncementsResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool AddAnnouncementsResult;
+        
+        public AddAnnouncementsResponse()
+        {
+        }
+        
+        public AddAnnouncementsResponse(bool AddAnnouncementsResult)
+        {
+            this.AddAnnouncementsResult = AddAnnouncementsResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     public interface IMotoServiceChannel : ServiceReferenceMoto.IMotoService, System.ServiceModel.IClientChannel
     {
@@ -642,6 +1263,66 @@ namespace ServiceReferenceMoto
         public System.Threading.Tasks.Task<ServiceReferenceMoto.AddOrUpdateUserResponse> AddOrUpdateUserAsync(ServiceReferenceMoto.AddOrUpdateUserRequest request)
         {
             return base.Channel.AddOrUpdateUserAsync(request);
+        }
+        
+        public ServiceReferenceMoto.GetBillsResponse GetBills(ServiceReferenceMoto.GetBillsRequest request)
+        {
+            return base.Channel.GetBills(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReferenceMoto.GetBillsResponse> GetBillsAsync(ServiceReferenceMoto.GetBillsRequest request)
+        {
+            return base.Channel.GetBillsAsync(request);
+        }
+        
+        public ServiceReferenceMoto.GetUserBillsResponse GetUserBills(ServiceReferenceMoto.GetUserBillsRequest request)
+        {
+            return base.Channel.GetUserBills(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReferenceMoto.GetUserBillsResponse> GetUserBillsAsync(ServiceReferenceMoto.GetUserBillsRequest request)
+        {
+            return base.Channel.GetUserBillsAsync(request);
+        }
+        
+        public ServiceReferenceMoto.GetUserMessagesResponse GetUserMessages(ServiceReferenceMoto.GetUserMessagesRequest request)
+        {
+            return base.Channel.GetUserMessages(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReferenceMoto.GetUserMessagesResponse> GetUserMessagesAsync(ServiceReferenceMoto.GetUserMessagesRequest request)
+        {
+            return base.Channel.GetUserMessagesAsync(request);
+        }
+        
+        public ServiceReferenceMoto.GetUserInAnnouncementMessagesResponse GetUserInAnnouncementMessages(ServiceReferenceMoto.GetUserInAnnouncementMessagesRequest request)
+        {
+            return base.Channel.GetUserInAnnouncementMessages(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReferenceMoto.GetUserInAnnouncementMessagesResponse> GetUserInAnnouncementMessagesAsync(ServiceReferenceMoto.GetUserInAnnouncementMessagesRequest request)
+        {
+            return base.Channel.GetUserInAnnouncementMessagesAsync(request);
+        }
+        
+        public ServiceReferenceMoto.GetBrandsResponse GetBrands(ServiceReferenceMoto.GetBrandsRequest request)
+        {
+            return base.Channel.GetBrands(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReferenceMoto.GetBrandsResponse> GetBrandsAsync(ServiceReferenceMoto.GetBrandsRequest request)
+        {
+            return base.Channel.GetBrandsAsync(request);
+        }
+        
+        public ServiceReferenceMoto.AddAnnouncementsResponse AddAnnouncements(ServiceReferenceMoto.AddAnnouncementsRequest request)
+        {
+            return base.Channel.AddAnnouncements(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReferenceMoto.AddAnnouncementsResponse> AddAnnouncementsAsync(ServiceReferenceMoto.AddAnnouncementsRequest request)
+        {
+            return base.Channel.AddAnnouncementsAsync(request);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

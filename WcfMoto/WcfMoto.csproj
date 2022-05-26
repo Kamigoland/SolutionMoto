@@ -70,70 +70,64 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\MotoModel.Context.tt">
+    <Content Include="Model\MotoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MotoModel.edmx</DependentUpon>
-      <LastGenOutput>MotoModel.Context.cs</LastGenOutput>
+      <DependentUpon>MotoEntities.edmx</DependentUpon>
+      <LastGenOutput>MotoEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\MotoModel.tt">
+    <Content Include="Model\MotoEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MotoModel.edmx</DependentUpon>
-      <LastGenOutput>MotoModel.cs</LastGenOutput>
+      <DependentUpon>MotoEntities.edmx</DependentUpon>
+      <LastGenOutput>MotoEntities.cs</LastGenOutput>
     </Content>
     <Content Include="MotoService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Announcements.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\BillDiscount.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Bills.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\BodyTypes.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Brands.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Colors.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Discounts.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Messages.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Models.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MotoModel.Context.cs">
+    <Compile Include="Model\MotoEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MotoModel.Context.tt</DependentUpon>
+      <DependentUpon>MotoEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MotoModel.cs">
+    <Compile Include="Model\MotoEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MotoModel.Designer.cs">
+    <Compile Include="Model\MotoEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MotoModel.edmx</DependentUpon>
+      <DependentUpon>MotoEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Services.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sysdiagrams.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Users.cs">
-      <DependentUpon>MotoModel.tt</DependentUpon>
+      <DependentUpon>MotoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="MotoService.svc.cs">
       <DependentUpon>MotoService.svc</DependentUpon>
@@ -142,18 +136,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\PropertyUtils.cs" />
     <Compile Include="ViewModels\AnnouncementForView.cs" />
+    <Compile Include="ViewModels\BillForView.cs" />
+    <Compile Include="ViewModels\BrandForView.cs" />
+    <Compile Include="ViewModels\MessageForView.cs" />
     <Compile Include="ViewModels\UserForView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Model\MotoModel.edmx">
+    <EntityDeploy Include="Model\MotoEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MotoModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MotoEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model\MotoModel.edmx.diagram">
-      <DependentUpon>MotoModel.edmx</DependentUpon>
+    <Content Include="Model\MotoEntities.edmx.diagram">
+      <DependentUpon>MotoEntities.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">

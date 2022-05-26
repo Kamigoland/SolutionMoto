@@ -26,12 +26,10 @@ namespace WcfMoto.Model
         }
     
         public virtual DbSet<Announcements> Announcements { get; set; }
-        public virtual DbSet<BillDiscount> BillDiscount { get; set; }
         public virtual DbSet<Bills> Bills { get; set; }
         public virtual DbSet<BodyTypes> BodyTypes { get; set; }
         public virtual DbSet<Brands> Brands { get; set; }
         public virtual DbSet<Colors> Colors { get; set; }
-        public virtual DbSet<Discounts> Discounts { get; set; }
         public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<Models> Models { get; set; }
         public virtual DbSet<Services> Services { get; set; }
