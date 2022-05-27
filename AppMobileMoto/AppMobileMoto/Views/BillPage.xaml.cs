@@ -1,6 +1,4 @@
-﻿
-using AppMobileMoto.Services;
-using AppMobileMoto.ViewModels;
+﻿using AppMobileMoto.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

@@ -693,6 +693,18 @@ namespace ServiceReferenceMoto
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/AddAnnouncements", ReplyAction="http://tempuri.org/IMotoService/AddAnnouncementsResponse")]
         System.Threading.Tasks.Task<ServiceReferenceMoto.AddAnnouncementsResponse> AddAnnouncementsAsync(ServiceReferenceMoto.AddAnnouncementsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/AddBill", ReplyAction="http://tempuri.org/IMotoService/AddBillResponse")]
+        ServiceReferenceMoto.AddBillResponse AddBill(ServiceReferenceMoto.AddBillRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/AddBill", ReplyAction="http://tempuri.org/IMotoService/AddBillResponse")]
+        System.Threading.Tasks.Task<ServiceReferenceMoto.AddBillResponse> AddBillAsync(ServiceReferenceMoto.AddBillRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/AddMsg", ReplyAction="http://tempuri.org/IMotoService/AddMsgResponse")]
+        ServiceReferenceMoto.AddMsgResponse AddMsg(ServiceReferenceMoto.AddMsgRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMotoService/AddMsg", ReplyAction="http://tempuri.org/IMotoService/AddMsgResponse")]
+        System.Threading.Tasks.Task<ServiceReferenceMoto.AddMsgResponse> AddMsgAsync(ServiceReferenceMoto.AddMsgRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1155,6 +1167,106 @@ namespace ServiceReferenceMoto
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddBill", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddBillRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int idservice;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int idanno;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int iduser;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public decimal finalv;
+        
+        public AddBillRequest()
+        {
+        }
+        
+        public AddBillRequest(int idservice, int idanno, int iduser, decimal finalv)
+        {
+            this.idservice = idservice;
+            this.idanno = idanno;
+            this.iduser = iduser;
+            this.finalv = finalv;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddBillResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddBillResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool AddBillResult;
+        
+        public AddBillResponse()
+        {
+        }
+        
+        public AddBillResponse(bool AddBillResult)
+        {
+            this.AddBillResult = AddBillResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddMsg", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddMsgRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int idanno;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int iduser;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public string message;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public bool fromuser;
+        
+        public AddMsgRequest()
+        {
+        }
+        
+        public AddMsgRequest(int idanno, int iduser, string message, bool fromuser)
+        {
+            this.idanno = idanno;
+            this.iduser = iduser;
+            this.message = message;
+            this.fromuser = fromuser;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddMsgResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddMsgResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool AddMsgResult;
+        
+        public AddMsgResponse()
+        {
+        }
+        
+        public AddMsgResponse(bool AddMsgResult)
+        {
+            this.AddMsgResult = AddMsgResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     public interface IMotoServiceChannel : ServiceReferenceMoto.IMotoService, System.ServiceModel.IClientChannel
     {
@@ -1323,6 +1435,26 @@ namespace ServiceReferenceMoto
         public System.Threading.Tasks.Task<ServiceReferenceMoto.AddAnnouncementsResponse> AddAnnouncementsAsync(ServiceReferenceMoto.AddAnnouncementsRequest request)
         {
             return base.Channel.AddAnnouncementsAsync(request);
+        }
+        
+        public ServiceReferenceMoto.AddBillResponse AddBill(ServiceReferenceMoto.AddBillRequest request)
+        {
+            return base.Channel.AddBill(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReferenceMoto.AddBillResponse> AddBillAsync(ServiceReferenceMoto.AddBillRequest request)
+        {
+            return base.Channel.AddBillAsync(request);
+        }
+        
+        public ServiceReferenceMoto.AddMsgResponse AddMsg(ServiceReferenceMoto.AddMsgRequest request)
+        {
+            return base.Channel.AddMsg(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReferenceMoto.AddMsgResponse> AddMsgAsync(ServiceReferenceMoto.AddMsgRequest request)
+        {
+            return base.Channel.AddMsgAsync(request);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

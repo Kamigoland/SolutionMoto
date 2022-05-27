@@ -1,5 +1,7 @@
 ﻿using AppMobileMoto.Models;
 using AppMobileMoto.Services;
+using AppMobileMoto.Views;
+using Xamarin.Forms;
 
 namespace AppMobileMoto.ViewModels
 {
@@ -12,7 +14,7 @@ namespace AppMobileMoto.ViewModels
 
         public override void GoToAddPage()
         {
-            return;
+            Shell.Current.GoToAsync(nameof(NewBillsPage));
         }
     }
 }

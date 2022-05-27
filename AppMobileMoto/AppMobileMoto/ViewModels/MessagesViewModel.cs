@@ -1,5 +1,6 @@
 ﻿using AppMobileMoto.Models;
 using AppMobileMoto.Services;
+using AppMobileMoto.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 
 namespace AppMobileMoto.ViewModels
 {
-    class MessagesViewModel: BaseViewModel
+    class MessagesViewModel : BaseViewModel
     {
         public IDataStore<Messages> DataStore => DependencyService.Get<IDataStore<Messages>>();
         private Messages _selectedItem;
@@ -36,20 +37,21 @@ namespace AppMobileMoto.ViewModels
             try
             {
                 Items.Clear();
-                int[] czek = new int[1000];
+                var items = await DataStore.GetItemsAsync(true);
+
+                int[] check = new int[1000];
                 for (int i = 0; i < 1000; i++)
                 {
-                    czek[i] = 0;
+                    check[i] = 0;
                 }
-                var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
-                    //if (czek[item.IdAnnouncement]==0)
-                    //{
-                    //    czek[item.IdAnnouncement] = 1;
-                    //    Items.Add(item);
-                    //}
-                    Items.Add(item);
+                    if (check[item.IdAnnouncement] == 0)
+                    {
+                        Items.Add(item);
+                        check[item.IdAnnouncement] = 1;
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -89,7 +91,7 @@ namespace AppMobileMoto.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(MessageDetailPage)}?{nameof(MessageDetailViewModel.ItemId)}={item.IdAnnouncement}");
+            await Shell.Current.GoToAsync($"{nameof(MessageDetailPage)}?{nameof(MessageDetailViewModel.ItemId)}={item.IdAnnouncement}");
         }
     }
 }

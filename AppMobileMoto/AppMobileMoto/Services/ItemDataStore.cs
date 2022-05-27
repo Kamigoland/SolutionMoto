@@ -34,6 +34,7 @@ namespace AppMobileMoto.Services
                 item.Mileage.Value, item.StrokeCapacity.Value, item.Power.Value)).AddAnnouncementsResult;
             if (!passed)
             {
+                Refresh();
                 return await Task.FromResult(false);
             }
             else

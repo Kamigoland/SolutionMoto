@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:AppMobileMoto.ViewModels" x:DataType="viewmodels:NewBillViewModel"
+             x:Class="AppMobileMoto.Views.NewBillsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Announcemet ID" FontSize="Medium" />
+            <!--Picker ItemsSource="{Binding UIAA}"/>-->
+            <Editor Text="{Binding IdAnnouncement, Mode=TwoWay}" FontSize="Medium"/>
+            <Label Text="Service ID" FontSize="Medium" />
+            <Editor Text="{Binding IdService, Mode=TwoWay}" FontSize="Medium"/>
+            <Label Text="Final Value" FontSize="Medium" />
+            <Editor Text="{Binding FinalValue, Mode=TwoWay}" FontSize="Medium"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Pay And Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

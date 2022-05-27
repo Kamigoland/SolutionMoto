@@ -9,6 +9,22 @@ namespace WcfMoto
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "MotoService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select MotoService.svc or MotoService.svc.cs at the Solution Explorer and start debugging.
+    public static class Extension
+    {
+        public static List<T> Join<T>(this List<T> first, List<T> second)
+        {
+            if (first == null)
+            {
+                return second;
+            }
+            if (second == null)
+            {
+                return first;
+            }
+
+            return first.Concat(second).ToList();
+        }
+    }
     public class MotoService : IMotoService
     {
         List<AnnouncementForView> IMotoService.GetAnnouncements()
@@ -127,12 +143,28 @@ namespace WcfMoto
         public List<MessageForView> GetUserMessages(int id)
         {
             var dbContext = new MotoEntities();
-            var queryfinale = from Messages in dbContext.Messages 
+            var query1 = from Messages in dbContext.Messages 
                         where Messages.IdUser == id 
                         select Messages;
-            return queryfinale.ToList()
+            List<MessageForView> byuser = query1.ToList()
                 .Select(Messages => new MessageForView(Messages))
                 .ToList();
+            var query2 = from Announcements in dbContext.Announcements
+                         where Announcements.IdUser == id
+                         select Announcements;
+            List<AnnouncementForView> usersAnno = query2.ToList()
+                .Select(Announcements => new AnnouncementForView(Announcements))
+                .ToList();
+            foreach (AnnouncementForView item in usersAnno)
+            {
+                var query3 = from Messages in dbContext.Messages
+                             where Messages.IdAnnouncement == item.IdAnnouncement
+                             select Messages;
+                byuser = byuser.Join(query3.ToList()
+                    .Select(Messages => new MessageForView(Messages))
+                    .ToList());
+            }
+            return byuser;
         }
 
         public List<MessageForView> GetUserInAnnouncementMessages(int iduser, int idannouncement)
@@ -177,9 +209,55 @@ namespace WcfMoto
                 announcement.Mileage = mileage;
                 announcement.StrokeCapacity = stcap;
                 announcement.Power = power;
-                announcement.IsActive = true;
+                announcement.IsActive = false;
 
                 db.Announcements.Add(announcement);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine($"Exception occured {e.Message}");
+                return false;
+            }
+        }
+
+        public bool AddBill(int idservice, int idanno, int iduser, decimal finalv)
+        {
+            var db = new MotoEntities();
+            var bestId = (db.Bills.OrderByDescending(a => a.IdBill).FirstOrDefault()?.IdBill ?? 0) + 1;
+            Bills bill = new Bills();
+            bill.IdBill = bestId;
+            bill.IdService = idservice;
+            bill.IdAnnouncement = idanno;
+            bill.IdUser = iduser;
+            bill.FinalValue = finalv;
+            bill.DateTo = DateTime.Now;
+            db.Bills.Add(bill);
+            db.SaveChanges();
+            var modified = db.Announcements.FirstOrDefault(a => a.IdAnnouncement == idanno);
+            modified.IsActive = true;
+            db.Entry(modified).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return true;
+        }
+
+        public bool AddMsg(int idanno, int iduser, string message, bool fromuser)
+        {
+            try
+            {
+                var db = new MotoEntities();
+                var bestId = (db.Messages.OrderByDescending(a => a.IdMessage).FirstOrDefault()?.IdMessage ?? 0) + 1;
+                Messages massage = new Messages();
+                massage.IdMessage = bestId;
+                massage.IdAnnouncement = idanno;
+                massage.IdUser = iduser;
+                massage.Message = message;
+                massage.FromUser = fromuser;
+                massage.Date = DateTime.Now;
+
+                db.Messages.Add(massage);
                 db.SaveChanges();
                 return true;
             }

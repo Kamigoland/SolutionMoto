@@ -67,7 +67,7 @@
         </Grid>
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Description}" FontSize="Small"/>
-        <Button Text="Message Seller" Command="{Binding AddItemCommand}"/>
+        <Button Text="Message Seller" Command="{Binding MsgSeller}"/>
     </StackLayout>
     
 </ContentPage>

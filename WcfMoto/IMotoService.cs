@@ -38,7 +38,10 @@ namespace WcfMoto
         [OperationContract]
         bool AddAnnouncements(int iduser, int idbrand, int idmodel, int bodytype, int color, 
             string title, string des, int price, bool neg, int prodate, int mileage, int stcap, int power);
-
+        [OperationContract]
+        bool AddBill(int idservice, int idanno, int iduser, decimal finalv);
+        [OperationContract]
+        bool AddMsg( int idanno, int iduser, string message, bool fromuser);
 
 
 

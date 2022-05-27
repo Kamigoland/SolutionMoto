@@ -12,6 +12,8 @@ namespace AppMobileMoto
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(NewClientPage), typeof(NewClientPage));
+            Routing.RegisterRoute(nameof(NewBillsPage), typeof(NewBillsPage));
+            Routing.RegisterRoute(nameof(MessageDetailPage), typeof(MessageDetailPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

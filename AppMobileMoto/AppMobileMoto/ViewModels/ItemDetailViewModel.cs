@@ -1,5 +1,6 @@
 ﻿using AppMobileMoto.Models;
 using AppMobileMoto.Services;
+using AppMobileMoto.Views;
 using System;
 using System.Diagnostics;
 using Xamarin.Forms;
@@ -61,6 +62,15 @@ namespace AppMobileMoto.ViewModels
                 itemId = value;
                 LoadItemId(value);
             }
+        }
+        public Command MsgSeller { get; }
+        public ItemDetailViewModel()
+        {
+            MsgSeller = new Command(MsgSellers);
+        }
+        private async void MsgSellers()
+        {
+            await Shell.Current.GoToAsync($"{nameof(MessageDetailPage)}?{nameof(MessageDetailViewModel.ItemId)}={ItemId}");
         }
 
         public async void LoadItemId(int itemId)

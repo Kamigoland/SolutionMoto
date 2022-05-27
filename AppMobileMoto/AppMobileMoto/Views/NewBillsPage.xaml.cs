@@ -6,17 +6,13 @@ using Xamarin.Forms.Xaml;
 namespace AppMobileMoto.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewClientPage : ContentPage
+    public partial class NewBillsPage : ContentPage
     {
-        public Client Item { get; set; }
-
-        public NewClientPage()
+        public Bill Item { get; set; }
+        public NewBillsPage()
         {
             InitializeComponent();
-            BindingContext = new NewClientViewModel();
+            BindingContext = new NewBillViewModel();
         }
-
     }
 }
-
-
